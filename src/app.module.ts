@@ -7,8 +7,7 @@ import { BusinessModule } from './business/business.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
-    }), BusinessModule
-  ],
+    }), BusinessModule],
   controllers: [],
   providers: [],
 })
