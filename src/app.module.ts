@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { BusinessModule } from './business/business.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { Business } from './business/entities/business.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,6 +30,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_NAME,
       synchronize: true,
       logging: true,
+      entities: [Business]
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
