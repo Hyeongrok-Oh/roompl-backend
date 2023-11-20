@@ -1,4 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
+import { IsString } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
@@ -10,13 +11,16 @@ export class Business {
 
     @Field(type => String)
     @Column()
+    @IsString()
     company: string;
 
-    @Field(type => String)
+    @Field(type => String, {nullable: true})
     @Column()
+    @IsString()
     location: string;
 
     @Field(type => String)
     @Column()
+    @IsString()
     username: string;
 }
