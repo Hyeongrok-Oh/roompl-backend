@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Business {
+export class Hotel {
     @Field(type => Number)
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,7 +12,7 @@ export class Business {
     @Field(type => String)
     @Column()
     @IsString()
-    company: string;
+    hotel: string;
 
     @Field(type => String, {nullable: true})
     @Column()
@@ -22,5 +22,5 @@ export class Business {
     @Field(type => String)
     @Column()
     @IsString()
-    username: string;
+    manager: string;
 }

@@ -2,10 +2,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import * as Joi from "joi";
 import { GraphQLModule } from '@nestjs/graphql';
-import { BusinessModule } from './business/business.module';
+import { HotelModule } from './hotel/hotel.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { Business } from './business/entities/business.entity';
+import { Hotel } from './hotel/entities/hotel.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,13 +30,13 @@ import { Business } from './business/entities/business.entity';
       database: process.env.DB_NAME,
       synchronize: true,
       logging: true,
-      entities: [Business]
+      entities: [Hotel]
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
-    BusinessModule],
+    HotelModule],
   controllers: [],
   providers: [],
 })
