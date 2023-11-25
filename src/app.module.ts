@@ -6,6 +6,9 @@ import { HotelModule } from './hotel/hotel.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { Hotel } from './hotel/entities/hotel.entity';
+import { CommonModule } from './common/common.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/users.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,6 +22,7 @@ import { Hotel } from './hotel/entities/hotel.entity';
         DB_USERNAME: Joi.string().required(),
         DB_PASSWORD: Joi.string().required(),
         DB_NAME: Joi.string().required(),
+        SECRET_KEY: Joi.string().required(),
       })
     }),
     TypeOrmModule.forRoot({
@@ -30,13 +34,15 @@ import { Hotel } from './hotel/entities/hotel.entity';
       database: process.env.DB_NAME,
       synchronize: true,
       logging: true,
-      entities: [Hotel]
+      entities: [Hotel, User]
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
-    HotelModule],
+    HotelModule,
+    CommonModule,
+    UsersModule],
   controllers: [],
   providers: [],
 })

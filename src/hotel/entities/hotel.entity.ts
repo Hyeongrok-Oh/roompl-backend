@@ -1,14 +1,11 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
+import { CoreEntity } from "src/common/entities/core.entity";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Hotel {
-    @Field(type => Number)
-    @PrimaryGeneratedColumn()
-    id: number;
-
+export class Hotel extends CoreEntity{
     @Field(type => String)
     @Column()
     @IsString()
@@ -23,4 +20,9 @@ export class Hotel {
     @Column()
     @IsString()
     manager: string;
+
+    @Field(type => Number)
+    @Column()
+    @IsNumber()
+    max_capacity: number;
 }
